@@ -1,6 +1,24 @@
 ----App Name----
 
+1) Flora Sense
+
+
 ----Primary Colors----
+
+ //page background
+  primaryColor: fromHex('#F1F1F1'),
+  
+   //low priority texts
+   disabledColor: fromHex('#cbced4'),
+   
+   //main button background color
+    buttonColor: fromHex('#22a652'),
+    
+   //card background color
+   accentColor: fromHex('#FFFFFF'),
+   
+   //header text color
+   highlightColor: fromHex('#081b34')
 
 ----Attributes of a Flower----
 
