@@ -1,16 +1,33 @@
-# flora_sense
+----App Name----
 
-A new Flutter application.
+----Primary Colors----
 
-## Getting Started
+----Attributes of a Flower----
 
-This project is a starting point for a Flutter application.
+Flower name
+Scientific name
+Family
+Genus
+Colors
+Images
+Short description
+Long description
+Usages
 
-A few resources to get you started if this is your first Flutter project:
+----Database Information----
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Database Service is Firebase
+Database is Firestore
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+----Database Fields----
+
+1) name : String,
+2) scientific_name : String,
+3) family : String,
+4) genus : String,
+5) colors : List<String>,
+6) images :List<String>,
+7) preview : String,
+8) short_desc : String,
+9) long_desc : String,
+10) usage : String
