@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "667497859938",
+    "firebase_url": "https://flower-sense-default-rtdb.firebaseio.com",
+    "project_id": "flower-sense",
+    "storage_bucket": "flower-sense.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667497859938:android:17304fb09b3b12e10c7a3b",
+        "android_client_info": {
+          "package_name": "com.example.flora_sense"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667497859938-4hdd1rtprp1sp6eavmqfi624k1pgvmho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBISy04e7XDARbtyp9UXo-0gxg_z61UkxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667497859938-4hdd1rtprp1sp6eavmqfi624k1pgvmho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
