@@ -15,8 +15,6 @@ class _DashboardState extends State<Dashboard>
   List<Flower> flowerList = [];
 
 
-
-
   @override
   void initState(){
 
@@ -26,6 +24,8 @@ class _DashboardState extends State<Dashboard>
       setData(list)
 
     });
+
+
   }
   setData(List<Flower> list)
   {
@@ -99,8 +99,8 @@ class _DashboardState extends State<Dashboard>
                   itemBuilder: (context,position) {
 
                     String name = flowerList[position].name;
-                    String sname = flowerList[position].sname;
-                    String image = flowerList[position].imagePath;
+                    String sname = flowerList[position].scientific_name;
+                    String image = flowerList[position].preview;
                     List<String> colors = flowerList[position].colors;
 
                     return TileItem(name,sname,colors,image);

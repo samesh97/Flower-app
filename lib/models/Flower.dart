@@ -1,16 +1,18 @@
 class Flower
 {
-  String name = '',sname = '';
-  String imagePath = '';
+  String name = '',scientific_name = '';
+  String preview = '';
   List<String> colors = [];
   String id = '';
 
-  Flower(String name, String sname,List<String> colors,String imagePath)
+
+  Flower(String name, String scientific_name,List<String> colors,String preview)
   {
     this.name = name;
-    this.imagePath = imagePath;
+    this.preview = preview;
     this.colors = colors;
-    this.sname = sname;
+    this.scientific_name = scientific_name;
   }
+
 
 }

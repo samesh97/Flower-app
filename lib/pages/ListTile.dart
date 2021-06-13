@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+import 'package:flora_sense/models/Flower.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,16 +6,14 @@ import 'package:flutter/rendering.dart';
 
 class TileItem extends StatelessWidget
 {
-  String name = '',sname = '';
-  String imagePath = '';
-  List<String> colors = [];
+  Flower flower = new Flower('','',[],'');
 
-  TileItem(String name, String sname,List<String> colors,String imagePath)
+  TileItem(String name, String scientific_name,List<String> colors,String preview)
   {
-    this.name = name;
-    this.imagePath = imagePath;
-    this.colors = colors;
-    this.sname = sname;
+    flower.name = name;
+    flower.preview = preview;
+    flower.colors = colors;
+    flower.scientific_name = scientific_name;
   }
 
   @override
@@ -43,7 +40,7 @@ class TileItem extends StatelessWidget
       child: Row(
 
         children: [
-          FadeInImage(image: NetworkImage(imagePath), placeholder: AssetImage('assets/images/icon.png'),width: 130,),
+          FadeInImage(image: NetworkImage(flower.preview), placeholder: AssetImage('assets/images/icon.png'),width: 130,),
           SizedBox(width: 20,),
           Column(
 
@@ -52,7 +49,7 @@ class TileItem extends StatelessWidget
             children: [
 
               Text(
-                this.name,
+                flower.name,
                 style: TextStyle(
                     color: Theme.of(context).highlightColor,
                     fontWeight: FontWeight.bold,
@@ -62,7 +59,7 @@ class TileItem extends StatelessWidget
               SizedBox(height: 5,),
 
               Text(
-                this.sname,
+                flower.scientific_name,
                 style: TextStyle(
                     color: Theme.of(context).disabledColor,
                     fontWeight: FontWeight.bold,
@@ -70,7 +67,7 @@ class TileItem extends StatelessWidget
                 ),
               ),
               SizedBox(height: 8,),
-              getColorList(this.colors),
+              getColorList(flower.colors),
               SizedBox(height: 15,),
 
 

@@ -9,6 +9,8 @@ class DBHandler
    Future<List<Flower>> getData(BuildContext context) async
    {
 
+     print('called');
+
      // Firebase.initializeApp();
      List<Flower> flowers = [];
 
@@ -20,13 +22,19 @@ class DBHandler
              querySnapshot.docs.forEach((doc)
              {
                String name = doc["name"];
-               String imagePath = doc["imagePath"];
-               String sname = doc["sname"];
+               String preview = doc["preview"];
+               String sname = doc["scientific_name"];
                List<dynamic> colors = doc["colors"];
                List<String> list = colors.map((s) => s as String).toList();
 
-               Flower flower = new Flower(name, sname, list, imagePath);
+               String key = doc.id;
+
+
+               Flower flower = new Flower(name, sname, list, preview);
+               flower.id = key;
                flowers.add(flower);
+
+
 
 
 
