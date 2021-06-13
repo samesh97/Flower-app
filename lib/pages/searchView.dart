@@ -1,8 +1,11 @@
 import 'package:flora_sense/models/Flower.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'ListTile.dart';
 import '../database/dataHandler.dart';
+import 'dart:io';
+
 
 class Dashboard extends StatefulWidget {
   @override
@@ -12,6 +15,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard>
 {
 
+  List<File> files = [];
   List<Flower> flowerList = [];
 
 
@@ -49,7 +53,6 @@ class _DashboardState extends State<Dashboard>
                 SizedBox(height: 30,),
 
                 Container(
-
                   decoration: BoxDecoration(
                     color: Theme.of(context).accentColor,
                     borderRadius: BorderRadius.all(const Radius.circular(10)),
@@ -91,6 +94,7 @@ class _DashboardState extends State<Dashboard>
                     ],
                   ),
                 ),
+
                 SizedBox(height: 30,),
 
                 ListView.builder(
@@ -106,11 +110,31 @@ class _DashboardState extends State<Dashboard>
                     return TileItem(name,sname,colors,image);
                   },
                 ),
+                Expanded(child: Container()),
+                Container(
+                  margin: EdgeInsets.all(25),
+                  child: GestureDetector(
+                    child: Image.asset('assets/images/add.png', width: 55,),
+                    onTap: () => openImagePicker()
+
+                  )
+                )
               ],
             )
           ),
         ),
         
     );
+  }
+  void openImagePicker() async
+  {
+    final picker = ImagePicker();
+    PickedFile? pickedFile;
+    pickedFile = await picker.getImage(source: ImageSource.gallery);
+    if(pickedFile != null)
+    {
+        files.add(new File(pickedFile.path));
+        DBHandler().uploadImage(context, new File(pickedFile.path));
+    }
   }
 }

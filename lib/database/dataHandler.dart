@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flora_sense/models/Flower.dart';
 import 'package:flutter/cupertino.dart';
+import 'dart:io';
+import 'dart:math';
+import 'package:firebase_storage/firebase_storage.dart';
 
 
 class DBHandler
@@ -44,4 +48,27 @@ class DBHandler
      return flowers;
 
    }
+   Future<String> uploadImage(BuildContext context,File file) async
+   {
+
+     var rng = new Random();
+     var id = rng.nextInt(10000000);
+
+     var downloadUrl;
+
+     try
+     {
+       var snapshot = await FirebaseStorage.instance
+           .ref()
+           .child('uploads/${id}.png')
+           .putFile(file);
+       downloadUrl = await snapshot.ref.getDownloadURL();
+
+     }
+     on FirebaseException catch (e) {}
+
+
+     return downloadUrl;
+   }
+
 }
