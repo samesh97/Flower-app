@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 import 'searchView.dart';
 
 
-void main() {
+void main()
+{
   Color fromHex(String hexString) {
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
@@ -45,8 +46,6 @@ class _MyAppState extends State<MyApp>
 {
 
 
-
-
   @override
   void initState() {
 
@@ -68,11 +67,14 @@ class _MyAppState extends State<MyApp>
 
       Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
 
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent
+      ));
+
     });
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent
-    ));
+
   }
+
 
 
 

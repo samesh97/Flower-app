@@ -5,11 +5,13 @@ import 'package:flora_sense/models/Flower.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
 import 'dart:math';
-import 'package:firebase_storage/firebase_storage.dart';
+
 
 
 class DBHandler
 {
+  final String COLLECTION_NAME = "flowers";
+
    Future<List<Flower>> getData(BuildContext context) async
    {
 
@@ -19,7 +21,7 @@ class DBHandler
      List<Flower> flowers = [];
 
      await FirebaseFirestore.instance
-         .collection('flowers')
+         .collection(COLLECTION_NAME)
          .get()
          .then((QuerySnapshot querySnapshot)
          {
@@ -48,7 +50,7 @@ class DBHandler
      return flowers;
 
    }
-   Future<String> uploadImage(BuildContext context,File file) async
+   Future<String> uploadImage(File file) async
    {
 
      var rng = new Random();
@@ -69,6 +71,58 @@ class DBHandler
 
 
      return downloadUrl;
+   }
+   Future<bool> insertDocument(File preview,List<File> images,List<String> colors,String name,String sname,String family,String genus,String short_desc,String long_desc) async
+   {
+
+     String previewImageLink = await uploadImage(preview);
+
+     List<String> uploadedImageLinks = [];
+
+     //remove sample first element
+     images.removeAt(0);
+
+     for(File f in images)
+     {
+        String link = await uploadImage(f);
+        uploadedImageLinks.add(link);
+     }
+
+
+     //remove first sample color
+     colors.removeAt(0);
+
+      List<dynamic> dcolors  = [];
+      for(String c in colors)
+      {
+        dcolors.add(c);
+      }
+
+      Map<String, dynamic> flower = <String, dynamic>{
+        'name': name,
+        'scientific_name': sname,
+        'preview' : previewImageLink,
+        'colors' : dcolors,
+        'family' : family,
+        'genus' : genus,
+        'short_desc' : short_desc,
+        'long_desc' : long_desc,
+        'images' : uploadedImageLinks
+
+      };
+
+
+     try
+     {
+       await FirebaseFirestore.instance
+           .collection(COLLECTION_NAME).add(flower);
+
+       return true;
+     } on Exception catch (e)
+     {
+        return false;
+     }
+
    }
 
 }

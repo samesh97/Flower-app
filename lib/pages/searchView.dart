@@ -4,48 +4,76 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'ListTile.dart';
 import '../database/dataHandler.dart';
-import 'dart:io';
+import 'insertFlower.dart';
 
 
-class Dashboard extends StatefulWidget {
+
+class Dashboard extends StatefulWidget
+{
   @override
   _DashboardState createState() => _DashboardState();
+
 }
 
 class _DashboardState extends State<Dashboard>
 {
 
-  List<File> files = [];
   List<Flower> flowerList = [];
-
+  bool isLoading = true;
 
   @override
   void initState(){
 
     super.initState();
-    DBHandler().getData(context).then((List<Flower> list) => {
+    loadData();
 
-      setData(list)
-
+  }
+  loadData()
+  {
+    setState(() {
+      isLoading = true;
     });
 
 
+    DBHandler().getData(context).then((List<Flower> list) => {
+      setData(list)
+    });
   }
   setData(List<Flower> list)
   {
     setState(() {
       flowerList = list;
+      isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context)
   {
-
+      return getView();
+  }
+  Widget getView()
+  {
+      if(isLoading)
+      {
+          return getLoadingScreen();
+      }
+      return getList();
+  }
+  Widget getLoadingScreen()
+  {
     return Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
-        body: SafeArea(
-          child: Container(
+
+        body: Center(child: CircularProgressIndicator())
+    );
+  }
+  Widget getList()
+  {
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+      body: SafeArea(
+        child: Container(
+
             margin: EdgeInsets.symmetric(horizontal: 30),
 
             child: Column(
@@ -54,8 +82,8 @@ class _DashboardState extends State<Dashboard>
 
                 Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
-                    borderRadius: BorderRadius.all(const Radius.circular(10)),
+                      color: Theme.of(context).accentColor,
+                      borderRadius: BorderRadius.all(const Radius.circular(10)),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.1),
@@ -83,7 +111,7 @@ class _DashboardState extends State<Dashboard>
                         ),
                       ),
                       Expanded(
-                        flex: 0,
+                          flex: 0,
                           child: Container(
                               width: 25,
                               height: 25,
@@ -97,44 +125,43 @@ class _DashboardState extends State<Dashboard>
 
                 SizedBox(height: 30,),
 
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: flowerList.length,
-                  itemBuilder: (context,position) {
+               Expanded(
+                   child:  ListView.builder(
+                     shrinkWrap: true,
+                     itemCount: flowerList.length,
+                     itemBuilder: (context,position) {
 
-                    String name = flowerList[position].name;
-                    String sname = flowerList[position].scientific_name;
-                    String image = flowerList[position].preview;
-                    List<String> colors = flowerList[position].colors;
+                       String name = flowerList[position].name;
+                       String sname = flowerList[position].scientific_name;
+                       String image = flowerList[position].preview;
+                       List<String> colors = flowerList[position].colors;
 
-                    return TileItem(name,sname,colors,image);
-                  },
-                ),
-                Expanded(child: Container()),
+                       return TileItem(name,sname,colors,image);
+                     },
+                   ),
+               ),
+
                 Container(
-                  margin: EdgeInsets.all(25),
-                  child: GestureDetector(
-                    child: Image.asset('assets/images/add.png', width: 55,),
-                    onTap: () => openImagePicker()
+                    margin: EdgeInsets.only(top: 20,bottom: 20,left: 0,right: 0),
+                    child: GestureDetector(
+                        child: Image.asset('assets/images/add.png', width: 55,),
+                        onTap: () => openInsertPage()
 
-                  )
+                    )
                 )
               ],
             )
-          ),
         ),
-        
+      ),
+
     );
   }
-  void openImagePicker() async
+  void openInsertPage() async
   {
-    final picker = ImagePicker();
-    PickedFile? pickedFile;
-    pickedFile = await picker.getImage(source: ImageSource.gallery);
-    if(pickedFile != null)
-    {
-        files.add(new File(pickedFile.path));
-        DBHandler().uploadImage(context, new File(pickedFile.path));
-    }
+      bool value = await Navigator.push(context, MaterialPageRoute(builder: (context) => InsertView()));
+      if(value)
+      {
+        loadData();
+      }
   }
 }
