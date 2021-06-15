@@ -72,30 +72,30 @@ class DBHandler
 
      return downloadUrl;
    }
-   Future<bool> insertDocument(File preview,List<File> images,List<String> colors,String name,String sname,String family,String genus,String short_desc,String long_desc) async
+   Future<bool> insertDocument(File preview,List<File> images,List<String> colors,String name,String sname,String family,String genus,String short_desc,String usage) async
    {
 
      String previewImageLink = await uploadImage(preview);
 
      List<String> uploadedImageLinks = [];
 
-     //remove sample first element
-     images.removeAt(0);
 
      for(File f in images)
      {
-        String link = await uploadImage(f);
-        uploadedImageLinks.add(link);
+       if(f.path.isNotEmpty)
+       {
+         String link = await uploadImage(f);
+         uploadedImageLinks.add(link);
+       }
+
      }
 
-
-     //remove first sample color
-     colors.removeAt(0);
 
       List<dynamic> dcolors  = [];
       for(String c in colors)
       {
-        dcolors.add(c);
+        if(c.isNotEmpty)
+          dcolors.add(c);
       }
 
       Map<String, dynamic> flower = <String, dynamic>{
@@ -106,7 +106,7 @@ class DBHandler
         'family' : family,
         'genus' : genus,
         'short_desc' : short_desc,
-        'long_desc' : long_desc,
+        'usage' : usage,
         'images' : uploadedImageLinks
 
       };
@@ -118,7 +118,8 @@ class DBHandler
            .collection(COLLECTION_NAME).add(flower);
 
        return true;
-     } on Exception catch (e)
+     }
+     on Exception catch (e)
      {
         return false;
      }

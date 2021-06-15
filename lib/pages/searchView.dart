@@ -1,7 +1,7 @@
 import 'package:flora_sense/models/Flower.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'ListTile.dart';
 import '../database/dataHandler.dart';
 import 'insertFlower.dart';
@@ -162,6 +162,7 @@ class _DashboardState extends State<Dashboard>
       if(value)
       {
         loadData();
+        showToast('Successfully inserted the flower!',context:context);
       }
   }
 }

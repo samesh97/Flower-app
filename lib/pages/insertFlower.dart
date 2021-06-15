@@ -28,7 +28,7 @@ class _InsertState extends State<InsertView>
   TextEditingController familyController = new TextEditingController();
   TextEditingController genusController = new TextEditingController();
   TextEditingController short_descController = new TextEditingController();
-  TextEditingController long_descController = new TextEditingController();
+  TextEditingController usage_descController = new TextEditingController();
 
 
   @override
@@ -213,13 +213,13 @@ class _InsertState extends State<InsertView>
               width: MediaQuery.of(context).size.width,
               child: TextField(
 
-                controller: long_descController,
+                controller: usage_descController,
                 minLines: 10,
                 maxLines: 10,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
 
-                    hintText: 'Long description',
+                    hintText: 'Usage',
                     hintStyle: TextStyle(fontWeight: FontWeight.w500)
                 ),
               ),
@@ -349,7 +349,7 @@ class _InsertState extends State<InsertView>
     String family = familyController.text;
     String genus = genusController.text;
     String short_desc = short_descController.text;
-    String long_desc = long_descController.text;
+    String usage = usage_descController.text;
 
 
     if(name.isEmpty)
@@ -393,9 +393,9 @@ class _InsertState extends State<InsertView>
       showToasts('Please fill the short description');
       return;
     }
-    if(long_desc.isEmpty)
+    if(usage.isEmpty)
     {
-      showToasts('Please fill the long description');
+      showToasts('Please fill the usages');
       return;
     }
 
@@ -407,7 +407,7 @@ class _InsertState extends State<InsertView>
 
 
 
-    DBHandler().insertDocument(previewImageFile, files, colorList, name, sname, family, genus, short_desc, long_desc).then((bool isSuccess) => {
+    DBHandler().insertDocument(previewImageFile, files, colorList, name, sname, family, genus, short_desc, usage).then((bool isSuccess) => {
 
       finalize(isSuccess)
 
