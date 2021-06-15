@@ -1,4 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flora_sense/database/LocalData.dart';
+import 'package:flora_sense/pages/loginView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'searchView.dart';
@@ -6,7 +8,8 @@ import 'searchView.dart';
 
 void main()
 {
-  Color fromHex(String hexString) {
+  Color fromHex(String hexString)
+  {
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
     buffer.write(hexString.replaceFirst('#', ''));
@@ -54,10 +57,18 @@ class _MyAppState extends State<MyApp>
 
     Firebase.initializeApp();
 
+    LocalData.isLogin().then((value) => {
 
-    // WidgetsBinding.instance!
-    //     .addPostFrameCallback((_) => navigateToDashBoard(context));
+      if(!value)
+      {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Login()))
+      }
+      else
+      {
+          navigateToDashBoard(context)
+      }
 
+    });
 
 
   }
@@ -67,9 +78,9 @@ class _MyAppState extends State<MyApp>
 
       Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
 
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent
-      ));
+      // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      //     statusBarColor: Colors.transparent
+      // ));
 
     });
 
@@ -80,7 +91,7 @@ class _MyAppState extends State<MyApp>
 
   @override
   Widget build(BuildContext context) {
-    Widget w = Scaffold(
+    return Scaffold(
 
       body: Container(
         color: Theme.of(context).buttonColor,
@@ -106,8 +117,7 @@ class _MyAppState extends State<MyApp>
       ),
 
     );
-    navigateToDashBoard(context);
-    return w;
+
   }
 
 }
