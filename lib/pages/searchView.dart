@@ -19,7 +19,9 @@ class _DashboardState extends State<Dashboard>
 {
 
   List<Flower> flowerList = [];
+  List<Flower> tempFlowerList = [];
   bool isLoading = true;
+  TextEditingController searchTextController = new TextEditingController();
 
   @override
   void initState(){
@@ -43,6 +45,7 @@ class _DashboardState extends State<Dashboard>
   {
     setState(() {
       flowerList = list;
+      tempFlowerList = flowerList;
       isLoading = false;
     });
   }
@@ -101,6 +104,7 @@ class _DashboardState extends State<Dashboard>
                       Expanded(
                         flex: 1,
                         child: TextField(
+                          controller: searchTextController,
 
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -112,11 +116,14 @@ class _DashboardState extends State<Dashboard>
                       ),
                       Expanded(
                           flex: 0,
-                          child: Container(
-                              width: 25,
-                              height: 25,
-                              child: Image.asset('assets/images/search_icon.png')
+                          child: GestureDetector(
+                            child: Container(
+                                width: 25,
+                                height: 25,
+                                child: Image.asset('assets/images/search_icon.png')
 
+                            ),
+                            onTap: () => {search()},
                           )
                       )
                     ],
@@ -164,5 +171,28 @@ class _DashboardState extends State<Dashboard>
         loadData();
         showToast('Successfully inserted the flower!',context:context);
       }
+  }
+  void search()
+  {
+    String keyword = searchTextController.text;
+    if(keyword.isNotEmpty)
+    {
+        filterFlowerList(keyword);
+    }
+  }
+  void filterFlowerList(String keyword)
+  {
+      List<Flower> list = [];
+      for(Flower flower in tempFlowerList)
+      {
+          if(flower.name.contains(keyword))
+          {
+              list.add(flower);
+          }
+      }
+
+      setState(() {
+        flowerList = list;
+      });
   }
 }
