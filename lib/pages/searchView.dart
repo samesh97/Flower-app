@@ -1,4 +1,5 @@
 import 'package:flora_sense/models/Flower.dart';
+import 'package:flora_sense/pages/viewMorePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
@@ -104,6 +105,8 @@ class _DashboardState extends State<Dashboard>
                       Expanded(
                         flex: 1,
                         child: TextField(
+                          onSubmitted: (value) => search(),
+                          maxLines: 1,
                           controller: searchTextController,
 
                           decoration: InputDecoration(
@@ -138,12 +141,7 @@ class _DashboardState extends State<Dashboard>
                      itemCount: flowerList.length,
                      itemBuilder: (context,position) {
 
-                       String name = flowerList[position].name;
-                       String sname = flowerList[position].scientific_name;
-                       String image = flowerList[position].preview;
-                       List<String> colors = flowerList[position].colors;
-
-                       return TileItem(name,sname,colors,image);
+                       return TileItem(flowerList[position],(flower) => clickedViewMore(flower));
                      },
                    ),
                ),
@@ -175,10 +173,7 @@ class _DashboardState extends State<Dashboard>
   void search()
   {
     String keyword = searchTextController.text;
-    if(keyword.isNotEmpty)
-    {
-        filterFlowerList(keyword);
-    }
+    filterFlowerList(keyword);
   }
   void filterFlowerList(String keyword)
   {
@@ -191,8 +186,16 @@ class _DashboardState extends State<Dashboard>
           }
       }
 
+      if(list.isEmpty)
+        list = tempFlowerList;
+
       setState(() {
         flowerList = list;
       });
+  }
+  clickedViewMore(Flower flower)
+  {
+      print('Clicked Flower ${flower.name} And Flower Id ${flower.id}');
+      Navigator.push(context, MaterialPageRoute(builder: (context) => ViewMore(flowerId: flower.id,)));
   }
 }

@@ -31,13 +31,20 @@ class DBHandler
                String preview = doc["preview"];
                String sname = doc["scientific_name"];
                List<dynamic> colors = doc["colors"];
-               List<String> list = colors.map((s) => s as String).toList();
+               List<String> colorList = colors.map((s) => s as String).toList();
 
-               String key = doc.id;
+               String family = doc["family"];
+               String genus = doc["genus"];
+               String short_desc = doc["short_desc"];
+               String usage = doc["usage"];
+
+               List<dynamic> imageListD = doc["images"];
+               List<String> imageList = imageListD.map((s) => s as String).toList();
 
 
-               Flower flower = new Flower(name, sname, list, preview);
-               flower.id = key;
+               String id = doc.id;
+
+               Flower flower = new Flower(id,name, sname, colorList, preview,family,genus,short_desc,usage,imageList);
                flowers.add(flower);
 
 

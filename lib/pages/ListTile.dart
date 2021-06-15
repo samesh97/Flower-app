@@ -6,14 +6,13 @@ import 'package:flutter/rendering.dart';
 
 class TileItem extends StatelessWidget
 {
-  Flower flower = new Flower('','',[],'');
+  late Flower flower;
+  late Function viewMore;
 
-  TileItem(String name, String scientific_name,List<String> colors,String preview)
+  TileItem(Flower flower,Function viewMore)
   {
-    flower.name = name;
-    flower.preview = preview;
-    flower.colors = colors;
-    flower.scientific_name = scientific_name;
+    this.flower = flower;
+    this.viewMore = viewMore;
   }
 
   @override
@@ -79,15 +78,18 @@ class TileItem extends StatelessWidget
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
 
-                Container(
+                GestureDetector(
+                  child: Container(
 
-                    height: 20,
-                    width: 70,
-                    // color: Theme.of(context).buttonColor,
-                    child: Center(
-                        child: Image.asset('assets/images/arrow.png')
-                    )
+                      height: 20,
+                      width: 70,
+                      // color: Theme.of(context).buttonColor,
+                      child: Center(
+                          child: Image.asset('assets/images/arrow.png')
+                      )
 
+                  ),
+                  onTap: () => {viewMore(flower)},
                 ),
 
               ],
