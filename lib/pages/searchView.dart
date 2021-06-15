@@ -1,3 +1,4 @@
+import 'package:flora_sense/database/LocalData.dart';
 import 'package:flora_sense/models/Flower.dart';
 import 'package:flora_sense/pages/viewMorePage.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,6 +24,9 @@ class _DashboardState extends State<Dashboard>
   List<Flower> tempFlowerList = [];
   bool isLoading = true;
   TextEditingController searchTextController = new TextEditingController();
+
+  Widget insertFlowerWidget = Text('');
+
 
   @override
   void initState(){
@@ -73,7 +77,7 @@ class _DashboardState extends State<Dashboard>
   }
   Widget getList()
   {
-    return Scaffold(
+    Widget w = Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Container(
@@ -146,20 +150,49 @@ class _DashboardState extends State<Dashboard>
                    ),
                ),
 
-                Container(
-                    margin: EdgeInsets.only(top: 20,bottom: 20,left: 0,right: 0),
-                    child: GestureDetector(
-                        child: Image.asset('assets/images/add.png', width: 55,),
-                        onTap: () => openInsertPage()
 
-                    )
-                )
+                insertFlowerWidget
+
               ],
             )
         ),
       ),
 
     );
+
+    getViewBasedOnLoginState();
+
+    return w;
+  }
+  getViewBasedOnLoginState() async
+  {
+    LocalData.isLogin().then((b) => {
+
+      if(b)
+      {
+        setInsertFlowerWidget()
+      }
+
+
+    });
+
+  }
+  setInsertFlowerWidget()
+  {
+
+    setState(() {
+
+      Container(
+          margin: EdgeInsets.only(top: 20,bottom: 20,left: 0,right: 0),
+          child: GestureDetector(
+              child: Image.asset('assets/images/add.png', width: 55,),
+              onTap: () => openInsertPage()
+
+          )
+      );
+
+    });
+
   }
   void openInsertPage() async
   {
