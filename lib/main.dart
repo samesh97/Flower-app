@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flora_sense/database/LocalData.dart';
 import 'package:flora_sense/pages/loginView.dart';
+import 'package:flora_sense/pages/searchView.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'searchView.dart';
+
 
 
 void main()
@@ -18,9 +18,9 @@ void main()
 
   runApp(
       MaterialApp(
-          home : MyApp(),
-          theme: ThemeData(
-            //page background
+        home : MyApp(),
+        theme: ThemeData(
+          //page background
             primaryColor: fromHex('#F1F1F1'),
             //low priority texts
             disabledColor: fromHex('#cbced4'),
@@ -31,7 +31,7 @@ void main()
             //header color
             highlightColor: fromHex('#081b34')
 
-          ),
+        ),
         debugShowCheckedModeBanner: false,
       )
 
@@ -60,13 +60,13 @@ class _MyAppState extends State<MyApp>
     LocalData.isLogin().then((value) => {
 
       if(!value)
-      {
+        {
           Navigator.push(context, MaterialPageRoute(builder: (context) => Login()))
-      }
+        }
       else
-      {
+        {
           navigateToDashBoard(context)
-      }
+        }
 
     });
 
@@ -96,22 +96,22 @@ class _MyAppState extends State<MyApp>
       body: Container(
         color: Theme.of(context).buttonColor,
         child: Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/icon.png'),
-                Text(
-                  'Flower Sense',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                      color: Theme.of(context).accentColor
-                  ),
-
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/icon.png'),
+              Text(
+                'Flower Sense',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                    color: Theme.of(context).accentColor
                 ),
-              ],
-            ),
+
+              ),
+            ],
+          ),
 
         ),
       ),

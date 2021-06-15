@@ -1,9 +1,10 @@
 import 'package:flora_sense/database/LocalData.dart';
 import 'package:flora_sense/pages/searchView.dart';
-import 'package:flora_sense/pages/splashScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+
+import '../main.dart';
 
 class Login extends StatefulWidget
 {
