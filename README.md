@@ -47,5 +47,4 @@ Database is Firestore
 6) images :List<String>,
 7) preview : String,
 8) short_desc : String,
-9) long_desc : String,
-10) usage : String
+9) usage : String
