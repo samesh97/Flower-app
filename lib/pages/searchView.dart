@@ -196,6 +196,6 @@ class _DashboardState extends State<Dashboard>
   clickedViewMore(Flower flower)
   {
       print('Clicked Flower ${flower.name} And Flower Id ${flower.id}');
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ViewMore(flowerId: flower.id,)));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => ViewMore(flower: flower,)));
   }
 }
