@@ -106,13 +106,13 @@ class _ViewMoreState extends State<ViewMore>
                                     fontSize: 30
                                 )
                             ),
-                            SizedBox(height: 4,),
+                            SizedBox(height: 3,),
                             Text(
                                 flower.scientific_name,
                                 style: TextStyle(
-                                    color: Theme.of(context).disabledColor,
+                                    color: Theme.of(context).buttonColor,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16
+                                    fontSize: 15
                                 )
                             ),
 

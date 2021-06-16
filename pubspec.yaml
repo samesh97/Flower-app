@@ -1,5 +1,5 @@
 name: flora_sense
-description: A new Flutter application.
+description: An App for learning of Flowers
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -39,11 +39,14 @@ dependencies:
   shared_preferences: ^2.0.6
   flutter_image_slider: ^0.0.1
 
+
 #  toast: ^0.1.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

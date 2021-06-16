@@ -30,95 +30,104 @@ class _LoginState extends State<Login>
     Widget w = Scaffold(
 
       body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.jpg"),
+              fit: BoxFit.cover,
+            )),
+        child: Container(
 
-        height: MediaQuery.of(context).size.height,
-        margin: EdgeInsets.only(left: 30,right: 30),
-        child: Column(
-
-          children: [
 
 
-            Expanded(
-              child: Container(
-                child:  Image.asset('assets/images/icon.png',),
+          height: MediaQuery.of(context).size.height,
+          margin: EdgeInsets.only(left: 30,right: 30),
+          child: Column(
+
+            children: [
+
+
+              Expanded(
+                child: Container(
+                  child:  Image.asset('assets/images/icon.png',),
+                ),
               ),
-            ),
 
 
-            Expanded(
-              child: Column(
+              Expanded(
+                child: Column(
 
-                children: [
+                  children: [
 
-                  Container(
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: TextField(
-
-                      controller: usernameController,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-
-                          hintText: 'Username',
-                          hintStyle: TextStyle(fontWeight: FontWeight.w500)
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(height: 15,),
-
-                  Container(
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: TextField(
-
-                      obscureText: true,
-                      obscuringCharacter: "*",
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-
-                          hintText: 'Password',
-                          hintStyle: TextStyle(fontWeight: FontWeight.w500)
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(height: 35,),
-                  GestureDetector(
-                    onTap: () => {login()},
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
+                    Container(
                       height: 60,
-                      decoration: BoxDecoration(
+                      width: MediaQuery.of(context).size.width,
+                      child: TextField(
 
-                        color: Theme.of(context).buttonColor,
-                        borderRadius: BorderRadius.all(const Radius.circular(10.0)),
+                        controller: usernameController,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+
+                            hintText: 'Username',
+                            hintStyle: TextStyle(fontWeight: FontWeight.w500)
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 15,),
+
+                    Container(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width,
+                      child: TextField(
+
+                        obscureText: true,
+                        obscuringCharacter: "*",
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+
+                            hintText: 'Password',
+                            hintStyle: TextStyle(fontWeight: FontWeight.w500)
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 35,),
+                    GestureDetector(
+                      onTap: () => {login()},
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 60,
+                        decoration: BoxDecoration(
+
+                          color: Theme.of(context).buttonColor,
+                          borderRadius: BorderRadius.all(const Radius.circular(10.0)),
+
+                        ),
+                        child: Center(child: Text('Login',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Theme.of(context).accentColor),)),
+
 
                       ),
-                      child: Center(child: Text('Login',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Theme.of(context).accentColor),)),
-
-
                     ),
-                  ),
 
-                  SizedBox(height: 15,),
+                    SizedBox(height: 15,),
 
-                  widgetToBeDisplayed,
-
-
-
-                ],
-              )
-            ),
+                    widgetToBeDisplayed,
 
 
 
-          ],
+                  ],
+                )
+              ),
 
+
+
+            ],
+
+
+          ),
 
         ),
-
       ),
 
     );

@@ -143,7 +143,7 @@ class _DashboardState extends State<Dashboard>
                   ),
                 ),
 
-                SizedBox(height: 30,),
+                SizedBox(height: 10,),
 
                Expanded(
                    child:  ListView.builder(
