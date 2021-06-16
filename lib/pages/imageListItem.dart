@@ -82,35 +82,6 @@ class _ImageItemState extends State<ImageItem>
         );
 
 
-
-
-
-        return Container(
-            width: 80,
-            height: 40,
-            margin: EdgeInsets.all(5),
-            padding: EdgeInsets.all(1),
-            decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
-                borderRadius: BorderRadius.all(const Radius.circular(10.0)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                    offset: Offset(0, 1), // changes position of shadow
-                  ),
-                ]
-            ),
-
-
-            child: GestureDetector(
-              child: Image.file(file,
-                  fit: BoxFit.cover, width: 20,
-                height: 20,),
-              onLongPress:() => {remove(position)},
-            )
-        );
       }
       return Container(
         width: 80,

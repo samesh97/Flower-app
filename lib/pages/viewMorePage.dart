@@ -58,7 +58,8 @@ class _ViewMoreState extends State<ViewMore>
 
               SizedBox(height: 30,),
 
-              Expanded(
+              Container(
+                height: 290,
                 child: Carousel(
                   autoScroll: true,
                   // widgets
@@ -71,36 +72,96 @@ class _ViewMoreState extends State<ViewMore>
 
 
               // FadeInImage(image: NetworkImage(flower.preview), placeholder: AssetImage('assets/images/icon.png'),width: 200,),
-              Expanded(child: Center(child: Text(flower.scientific_name,style: TextStyle(
-                  color: Theme.of(context).highlightColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20
-              ),),)),
-              Expanded(child: Center(child: Text('Usage - \n ${flower.usage}',style: TextStyle(
-                  color: Theme.of(context).highlightColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20
-              ),),)),
-              Expanded(child: Center(child: Text('Selected Flower ID ${flower.short_desc}',style: TextStyle(
-                  color: Theme.of(context).highlightColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15
-              ),),)),
-              GestureDetector(
 
-                child: Container(
-                  width: 120,
-                  height: 40,
-                  margin: EdgeInsets.only(right: 20),
+              SizedBox(height: 30,),
+              Container(
 
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).buttonColor,
-                      borderRadius: BorderRadius.all(Radius.circular(7))
-                  ),
-                  child: Center(child: Text('Update Flower',style: TextStyle(color: Theme.of(context).accentColor,fontSize: 14,fontWeight: FontWeight.bold),)),
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                      Text(
+                        flower.name,
+                        style: TextStyle(
+                            color: Theme.of(context).buttonColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30
+                        )
+                      ),
+                      SizedBox(height: 2,),
+                      Text(
+                          flower.scientific_name,
+                          style: TextStyle(
+                              color: Theme.of(context).disabledColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16
+                          )
+                      ),
+                  ],
+
                 ),
-                onTap: () => {updateFlower()},
+
               ),
+              SizedBox(height: 50,),
+
+
+              // Expanded(child: Center(child: Text(flower.name,style: TextStyle(
+              //     color: Theme.of(context).highlightColor,
+              //     fontWeight: FontWeight.bold,
+              //     fontSize: 20
+              // ),),)),
+              //
+              // Expanded(child: Center(child: Text(flower.scientific_name,style: TextStyle(
+              //     color: Theme.of(context).highlightColor,
+              //     fontWeight: FontWeight.bold,
+              //     fontSize: 20
+              // ),),)),
+
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                  child: Text('- Usage -',style: TextStyle(
+                  color: Theme.of(context).highlightColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20
+              )),
+                ),
+              ),
+
+              SizedBox(height: 30,),
+              Container(child: Center(child: Text(flower.usage,style: TextStyle(
+                  color: Theme.of(context).highlightColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14
+              ),),)),
+
+
+
+              // Expanded(child: Center(child: Text('Selected Flower ID ${flower.short_desc}',style: TextStyle(
+              //     color: Theme.of(context).highlightColor,
+              //     fontWeight: FontWeight.bold,
+              //     fontSize: 15
+              // ),),)),
+
+
+
+              // GestureDetector(
+              //
+              //   child: Container(
+              //     width: 120,
+              //     height: 40,
+              //     margin: EdgeInsets.only(right: 20),
+              //
+              //     decoration: BoxDecoration(
+              //         color: Theme.of(context).buttonColor,
+              //         borderRadius: BorderRadius.all(Radius.circular(7))
+              //     ),
+              //     child: Center(child: Text('Update Flower',style: TextStyle(color: Theme.of(context).accentColor,fontSize: 14,fontWeight: FontWeight.bold),)),
+              //   ),
+              //   onTap: () => {updateFlower()},
+              // ),
 
             ],
           )

@@ -265,11 +265,11 @@ class _UpdateFlowerState extends State<UpdateFlower>
                 height: 60,
                 decoration: BoxDecoration(
 
-                  color: Theme.of(context).buttonColor,
+                  color: Colors.red,
                   borderRadius: BorderRadius.all(const Radius.circular(10.0)),
 
                 ),
-                child: Center(child: Text('Add Flower',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Theme.of(context).accentColor),)),
+                child: Center(child: Text('Update Flower',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Theme.of(context).accentColor),)),
 
 
               ),
