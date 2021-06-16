@@ -105,179 +105,182 @@ class _UpdateFlowerState extends State<UpdateFlower>
     return SingleChildScrollView(
       child: Container(
 
-        margin: EdgeInsets.only(left: 30,right: 30),
-        child: Column(
+        child: Container(
 
-          children: [
+          margin: EdgeInsets.only(left: 30,right: 30),
+          child: Column(
 
-
-            SizedBox(height: 100,),
-
-            Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width,
-              child: TextField(
-
-                controller: nameController,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-
-                    hintText: 'Flower name',
-                    hintStyle: TextStyle(fontWeight: FontWeight.w500)
-                ),
-              ),
-            ),
-
-            SizedBox(height: 10,),
-            Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width,
-              child: TextField(
-
-                controller: sNameController,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-
-                    hintText: 'Scientific name',
-                    hintStyle: TextStyle(fontWeight: FontWeight.w500)
-                ),
-              ),
-            ),
-
-            SizedBox(height: 10,),
-            Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width,
-              child: TextField(
-
-                controller: familyController,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-
-                    hintText: 'Family',
-                    hintStyle: TextStyle(fontWeight: FontWeight.w500)
-                ),
-              ),
-            ),
-
-            SizedBox(height: 10,),
-            Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width,
-              child: TextField(
-
-                controller: genusController,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-
-                    hintText: 'Genus',
-                    hintStyle: TextStyle(fontWeight: FontWeight.w500)
-                ),
-              ),
-            ),
-
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-              child: ListView.builder(
-                  key: Key(colorList.length.toString()),
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: colorList.length,
-                  itemBuilder: (context,position){
+            children: [
 
 
-                    return ColorItem(colorList[position],(result) => addColor(result),(pos) => removeColor(pos),position);
+              SizedBox(height: 100,),
 
-                  }),
-            ),
-
-
-            SizedBox(height: 10,),
-
-
-
-            Container(
-                width: MediaQuery.of(context).size.width,
-                child: getPreviewWidget()
-
-            ),
-            SizedBox(height: 20,),
-
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-              child: ListView.builder(
-                  key: Key(files.length.toString()),
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: files.length,
-                  itemBuilder: (context,position){
-
-                    return ImageItemUpdate(files[position],position,openImagePicker,(pos) => removeFile(pos));
-
-                  }),
-            ),
-
-
-            SizedBox(height: 20,),
-            Container(
-              height: 150,
-              width: MediaQuery.of(context).size.width,
-              child: TextField(
-
-                controller:short_descController,
-                maxLines: 5,
-                minLines: 5,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-
-                    hintText: 'Short description',
-                    hintStyle: TextStyle(fontWeight: FontWeight.w500)
-                ),
-              ),
-            ),
-
-
-            SizedBox(height: 10,),
-            Container(
-              height: 250,
-              width: MediaQuery.of(context).size.width,
-              child: TextField(
-
-                controller: usage_descController,
-                minLines: 10,
-                maxLines: 10,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-
-                    hintText: 'Usage',
-                    hintStyle: TextStyle(fontWeight: FontWeight.w500)
-                ),
-              ),
-            ),
-
-            SizedBox(height: 10,),
-            GestureDetector(
-              onTap: () => {addFlower()},
-              child: Container(
-                width: MediaQuery.of(context).size.width,
+              Container(
                 height: 60,
-                decoration: BoxDecoration(
+                width: MediaQuery.of(context).size.width,
+                child: TextField(
 
-                  color: Colors.red,
-                  borderRadius: BorderRadius.all(const Radius.circular(10.0)),
+                  controller: nameController,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
 
+                      hintText: 'Flower name',
+                      hintStyle: TextStyle(fontWeight: FontWeight.w500)
+                  ),
                 ),
-                child: Center(child: Text('Update Flower',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Theme.of(context).accentColor),)),
+              ),
 
+              SizedBox(height: 10,),
+              Container(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                child: TextField(
+
+                  controller: sNameController,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+
+                      hintText: 'Scientific name',
+                      hintStyle: TextStyle(fontWeight: FontWeight.w500)
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 10,),
+              Container(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                child: TextField(
+
+                  controller: familyController,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+
+                      hintText: 'Family',
+                      hintStyle: TextStyle(fontWeight: FontWeight.w500)
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 10,),
+              Container(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                child: TextField(
+
+                  controller: genusController,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+
+                      hintText: 'Genus',
+                      hintStyle: TextStyle(fontWeight: FontWeight.w500)
+                  ),
+                ),
+              ),
+
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 100,
+                child: ListView.builder(
+                    key: Key(colorList.length.toString()),
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: colorList.length,
+                    itemBuilder: (context,position){
+
+
+                      return ColorItem(colorList[position],(result) => addColor(result),(pos) => removeColor(pos),position);
+
+                    }),
+              ),
+
+
+              SizedBox(height: 10,),
+
+
+
+              Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: getPreviewWidget()
 
               ),
-            ),
-            SizedBox(height: 50,)
+              SizedBox(height: 20,),
 
-          ],
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 100,
+                child: ListView.builder(
+                    key: Key(files.length.toString()),
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: files.length,
+                    itemBuilder: (context,position){
 
+                      return ImageItemUpdate(files[position],position,openImagePicker,(pos) => removeFile(pos));
+
+                    }),
+              ),
+
+
+              SizedBox(height: 20,),
+              Container(
+                height: 150,
+                width: MediaQuery.of(context).size.width,
+                child: TextField(
+
+                  controller:short_descController,
+                  maxLines: 5,
+                  minLines: 5,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+
+                      hintText: 'Short description',
+                      hintStyle: TextStyle(fontWeight: FontWeight.w500)
+                  ),
+                ),
+              ),
+
+
+              SizedBox(height: 10,),
+              Container(
+                height: 250,
+                width: MediaQuery.of(context).size.width,
+                child: TextField(
+
+                  controller: usage_descController,
+                  minLines: 10,
+                  maxLines: 10,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+
+                      hintText: 'Usage',
+                      hintStyle: TextStyle(fontWeight: FontWeight.w500)
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 10,),
+              GestureDetector(
+                onTap: () => {addFlower()},
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 60,
+                  decoration: BoxDecoration(
+
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(const Radius.circular(10.0)),
+
+                  ),
+                  child: Center(child: Text('Update Flower',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Theme.of(context).accentColor),)),
+
+
+                ),
+              ),
+              SizedBox(height: 50,)
+
+            ],
+
+          ),
         ),
       ),
     );
