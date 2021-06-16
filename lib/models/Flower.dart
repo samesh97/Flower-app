@@ -9,10 +9,7 @@ class Flower
   late List<String> images;
 
 
-  Flower(this.id, this.name, this.scientific_name, this.colors, this.preview, this.family, this.genus, this.short_desc, this.usage, this.images)
-  {
-
-  }
+  Flower(this.id, this.name, this.scientific_name, this.colors, this.preview, this.family, this.genus, this.short_desc, this.usage, this.images) {}
 
 
 

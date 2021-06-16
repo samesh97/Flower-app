@@ -39,7 +39,8 @@ class _ColorItemState extends State<ColorItem>
         height: 40,
         decoration: new BoxDecoration(
             color: fromHex(color),
-            shape: BoxShape.circle
+            shape: BoxShape.circle,
+
         ),
       );
   }

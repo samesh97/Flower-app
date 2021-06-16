@@ -15,13 +15,13 @@ class DBHandler
    Future<List<Flower>> getData(BuildContext context) async
    {
 
-     print('called');
 
      // Firebase.initializeApp();
      List<Flower> flowers = [];
 
      await FirebaseFirestore.instance
          .collection(COLLECTION_NAME)
+         .orderBy('name')
          .get()
          .then((QuerySnapshot querySnapshot)
          {
@@ -130,6 +130,22 @@ class DBHandler
      {
         return false;
      }
+
+   }
+   Future<bool> deleteFlower(Flower flower) async
+   {
+     try
+     {
+       await FirebaseFirestore.instance
+           .collection(COLLECTION_NAME)
+           .doc(flower.id).delete();
+       return true;
+     }
+     catch(e)
+     {
+        return false;
+     }
+
 
    }
 

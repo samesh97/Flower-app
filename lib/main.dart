@@ -3,6 +3,7 @@ import 'package:flora_sense/database/LocalData.dart';
 import 'package:flora_sense/pages/loginView.dart';
 import 'package:flora_sense/pages/searchView.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 
@@ -29,7 +30,8 @@ void main()
             //card color
             accentColor: fromHex('#FFFFFF'),
             //header color
-            highlightColor: fromHex('#081b34')
+            highlightColor: fromHex('#081b34'),
+            focusColor: fromHex('#00819e')
 
         ),
         debugShowCheckedModeBanner: false,
@@ -53,6 +55,10 @@ class _MyAppState extends State<MyApp>
   void initState() {
 
     super.initState();
+
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //     statusBarColor: fromHex('#a0d803')
+    // ));
 
 
     Firebase.initializeApp();
@@ -78,9 +84,7 @@ class _MyAppState extends State<MyApp>
 
       Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
 
-      // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      //     statusBarColor: Colors.transparent
-      // ));
+
 
     });
 
@@ -118,6 +122,13 @@ class _MyAppState extends State<MyApp>
 
     );
 
+  }
+  Color fromHex(String hexString)
+  {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
   }
 
 }
