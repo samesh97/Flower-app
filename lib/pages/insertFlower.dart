@@ -33,7 +33,7 @@ class _InsertState extends State<InsertView>
 
   @override
   void initState() {
-    // TODO: implement initState
+
     files.add(new File(''));
     colorList.add('');
 

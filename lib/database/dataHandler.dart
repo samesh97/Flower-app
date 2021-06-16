@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flora_sense/models/Flower.dart';
+import 'package:flora_sense/models/ImageUpdate.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
 import 'dart:math';
@@ -145,6 +146,78 @@ class DBHandler
      {
         return false;
      }
+
+   }
+  Future<bool> updateFlower(String flowerId,ImageUpdate preview,List<ImageUpdate> images,List<String> colors,String name,String sname,String family,String genus,String short_desc,String usage) async
+   {
+
+        //preview image
+        late String previewImage;
+
+        if(preview.file.path.isNotEmpty)
+        {
+          previewImage = await uploadImage(preview.file);
+        }
+        else
+        {
+          previewImage = preview.link;
+        }
+
+
+        //uploaded other images
+        List<String> uploadedImageLinks = [];
+
+        for(ImageUpdate f in images)
+        {
+          if(f.file.path.isNotEmpty)
+          {
+            String link = await uploadImage(f.file);
+            uploadedImageLinks.add(link);
+          }
+          else if(f.link.isNotEmpty)
+          {
+            uploadedImageLinks.add(f.link);
+          }
+
+        }
+
+        //color List
+
+        List<dynamic> dcolors  = [];
+        for(String c in colors)
+        {
+          if(c.isNotEmpty)
+            dcolors.add(c);
+        }
+
+
+        Map<String, dynamic> flower = <String, dynamic>{
+          'name': name,
+          'scientific_name': sname,
+          'preview' : previewImage,
+          'colors' : dcolors,
+          'family' : family,
+          'genus' : genus,
+          'short_desc' : short_desc,
+          'usage' : usage,
+          'images' : uploadedImageLinks
+
+        };
+
+
+
+        try
+        {
+          await FirebaseFirestore.instance
+              .collection(COLLECTION_NAME)
+              .doc(flowerId).update(flower);
+          return true;
+        }
+        catch(e)
+        {
+          return false;
+        }
+
 
 
    }
