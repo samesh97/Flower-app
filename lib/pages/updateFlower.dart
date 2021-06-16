@@ -1,3 +1,4 @@
+
 import 'package:flora_sense/models/Flower.dart';
 import 'package:flora_sense/models/ImageUpdate.dart';
 import 'package:flora_sense/pages/imageListItemUpdate.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:image_picker/image_picker.dart';
 import '../database/dataHandler.dart';
 import 'dart:io';
+
 
 import 'colorListItem.dart';
 import 'imageListItem.dart';
@@ -456,6 +458,9 @@ class _UpdateFlowerState extends State<UpdateFlower>
         isLoading = false;
       });
 
+      //close update screen
+      Navigator.pop(context,true);
+      //close view more screen
       Navigator.pop(context,true);
 
     }

@@ -239,9 +239,10 @@ class _DashboardState extends State<Dashboard>
         flowerList = list;
       });
   }
-  clickedViewMore(Flower flower)
+  clickedViewMore(Flower flower) async
   {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ViewMore(flower: flower,)));
+      var value = await Navigator.push(context, MaterialPageRoute(builder: (context) => ViewMore(flower: flower,)));
+      if(value)loadData();
   }
   deleteFlower(Flower flower)
   {

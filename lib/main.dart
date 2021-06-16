@@ -19,6 +19,7 @@ void main()
 
   runApp(
       MaterialApp(
+
         home : MyApp(),
         theme: ThemeData(
           //page background
@@ -35,7 +36,8 @@ void main()
 
         ),
         debugShowCheckedModeBanner: false,
-      )
+      ),
+
 
 
   );
