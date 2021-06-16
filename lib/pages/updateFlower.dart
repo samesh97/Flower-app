@@ -104,7 +104,11 @@ class _UpdateFlowerState extends State<UpdateFlower>
   {
     return SingleChildScrollView(
       child: Container(
-
+        decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.jpg"),
+              fit: BoxFit.cover,
+            )),
         child: Container(
 
           margin: EdgeInsets.only(left: 30,right: 30),

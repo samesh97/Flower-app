@@ -46,7 +46,11 @@ class _ViewMoreState extends State<ViewMore>
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/background.jpg"),
+                  fit: BoxFit.cover,
+                )),
             child: Container(
 
             padding:EdgeInsets.all(30.0),
