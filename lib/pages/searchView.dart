@@ -222,14 +222,18 @@ class _DashboardState extends State<Dashboard>
       List<Flower> list = [];
       for(Flower flower in tempFlowerList)
       {
-          if(flower.name.contains(keyword))
+          if(flower.name.toLowerCase().startsWith(keyword.toLowerCase()))
           {
               list.add(flower);
           }
       }
 
       if(list.isEmpty)
+      {
+        showToast('No match found!',context:context);
         list = tempFlowerList;
+      }
+
 
       setState(() {
         flowerList = list;
@@ -237,7 +241,6 @@ class _DashboardState extends State<Dashboard>
   }
   clickedViewMore(Flower flower)
   {
-      print('Clicked Flower ${flower.name} And Flower Id ${flower.id}');
       Navigator.push(context, MaterialPageRoute(builder: (context) => ViewMore(flower: flower,)));
   }
   deleteFlower(Flower flower)
