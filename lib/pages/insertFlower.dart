@@ -155,7 +155,7 @@ class _InsertState extends State<InsertView>
                   itemBuilder: (context,position){
 
 
-                    return ColorItem(colorList[position],(result) => addColor(result));
+                    return ColorItem(colorList[position],(result) => addColor(result),(pos) => removeColor(pos),position);
 
                   }),
             ),
@@ -430,5 +430,14 @@ class _InsertState extends State<InsertView>
   showToasts(String message)
   {
     showToast(message,context:context);
+  }
+  removeColor(int position)
+  {
+    setState(() {
+
+      colorList.removeAt(position);
+
+    });
+
   }
 }

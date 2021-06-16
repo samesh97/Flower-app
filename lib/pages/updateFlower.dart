@@ -187,7 +187,7 @@ class _UpdateFlowerState extends State<UpdateFlower>
                   itemBuilder: (context,position){
 
 
-                    return ColorItem(colorList[position],(result) => addColor(result));
+                    return ColorItem(colorList[position],(result) => addColor(result),(pos) => removeColor(pos),position);
 
                   }),
             ),
@@ -468,6 +468,15 @@ class _UpdateFlowerState extends State<UpdateFlower>
   showToasts(String message)
   {
     showToast(message,context:context);
+  }
+  removeColor(int position)
+  {
+    setState(() {
+
+      colorList.removeAt(position);
+
+    });
+
   }
 
 

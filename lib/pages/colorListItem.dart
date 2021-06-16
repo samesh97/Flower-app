@@ -6,20 +6,23 @@ class ColorItem extends StatefulWidget
 {
   late String color;
   Function colorAdd;
+  Function colorDelete;
+  int position;
 
-  ColorItem(this.color,this.colorAdd);
+  ColorItem(this.color,this.colorAdd,this.colorDelete,this.position);
 
   @override
-  _ColorItemState createState() => _ColorItemState(color,colorAdd);
+  _ColorItemState createState() => _ColorItemState(color,colorAdd,colorDelete,position);
 }
 
 class _ColorItemState extends State<ColorItem>
 {
   late String color;
   Function colorAdd;
+  Function colorDelete;
+  int position;
 
-
-  _ColorItemState(this.color,this.colorAdd);
+  _ColorItemState(this.color,this.colorAdd,this.colorDelete,this.position);
 
   @override
   Widget build(BuildContext context)
@@ -33,14 +36,17 @@ class _ColorItemState extends State<ColorItem>
         return GestureDetector(child: Image.asset('assets/images/add.png',width: 40,height: 40,),onTap: () => {openColorPicker(context)},);
       }
 
-      return Container(
-        margin: EdgeInsets.only(left: 15),
-        width: 40,
-        height: 40,
-        decoration: new BoxDecoration(
-            color: fromHex(color),
-            shape: BoxShape.circle,
+      return GestureDetector(
+      onLongPress: () => {colorDelete(position)},
+        child: Container(
+          margin: EdgeInsets.only(left: 15),
+          width: 40,
+          height: 40,
+          decoration: new BoxDecoration(
+              color: fromHex(color),
+              shape: BoxShape.circle,
 
+          ),
         ),
       );
   }
