@@ -72,6 +72,8 @@ class _LoginState extends State<Login>
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
 
+                      obscureText: true,
+                      obscuringCharacter: "*",
                       controller: passwordController,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),

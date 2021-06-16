@@ -196,7 +196,7 @@ class _TileItemState extends State<TileItem> {
 
       mainIcon =  GestureDetector(
         child: Container(
-          padding: EdgeInsets.only(right: 10),
+          padding: EdgeInsets.only(right: 15),
           child: Image.asset('assets/images/delete.png',width: 28,height: 28,),
         ),
         onLongPress: () => {delete(flower)},

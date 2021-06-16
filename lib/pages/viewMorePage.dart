@@ -2,6 +2,7 @@ import 'package:flora_sense/models/Flower.dart';
 import 'package:flora_sense/pages/updateFlower.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slider/carousel.dart';
 
 class ViewMore extends StatefulWidget
 {
@@ -17,8 +18,21 @@ class _ViewMoreState extends State<ViewMore>
 {
 
   late Flower flower;
+  List<String> imageList = [];
 
   _ViewMoreState(@required this.flower);
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    imageList = flower.images;
+
+
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context)
@@ -32,17 +46,31 @@ class _ViewMoreState extends State<ViewMore>
         child: Column(
             children: [
 
-              Expanded(child: Center(child: Text(
-                flower.name,
-                style: TextStyle(
-                    color: Theme.of(context).highlightColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20
+              // Expanded(child: Center(child: Text(
+              //   flower.name,
+              //   style: TextStyle(
+              //       color: Theme.of(context).highlightColor,
+              //       fontWeight: FontWeight.bold,
+              //       fontSize: 20
+              //   ),
+              // ),
+              // )),
+
+              SizedBox(height: 30,),
+
+              Expanded(
+                child: Carousel(
+                  autoScroll: true,
+                  // widgets
+                  items:
+                  [
+                      for(String link in imageList) getCarouselImageView(link)
+                  ],
                 ),
               ),
-              )),
 
-              FadeInImage(image: NetworkImage(flower.preview), placeholder: AssetImage('assets/images/icon.png'),width: 200,),
+
+              // FadeInImage(image: NetworkImage(flower.preview), placeholder: AssetImage('assets/images/icon.png'),width: 200,),
               Expanded(child: Center(child: Text(flower.scientific_name,style: TextStyle(
                   color: Theme.of(context).highlightColor,
                   fontWeight: FontWeight.bold,
@@ -84,5 +112,9 @@ class _ViewMoreState extends State<ViewMore>
   updateFlower()
   {
     Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateFlower(flower: flower,)));
+  }
+  Widget getCarouselImageView(String image)
+  {
+    return FadeInImage(image: NetworkImage(image),fit: BoxFit.cover, placeholder: AssetImage('assets/images/icon.png',),width: 200, height: 200,);
   }
 }
