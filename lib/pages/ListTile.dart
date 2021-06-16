@@ -165,7 +165,10 @@ class _TileItemState extends State<TileItem> {
             height: 12,
             decoration: new BoxDecoration(
                 color: TileItem.fromHex(list[position]),
-                shape: BoxShape.circle
+                shape: BoxShape.circle,
+                boxShadow: [
+                BoxShadow(color: Colors.black87, spreadRadius: 0.8)
+              ]
             ),
           );
         },

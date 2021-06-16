@@ -45,6 +45,9 @@ class _ColorItemState extends State<ColorItem>
           decoration: new BoxDecoration(
               color: fromHex(color),
               shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(color: Colors.black87, spreadRadius: 0.8)
+              ]
 
           ),
         ),

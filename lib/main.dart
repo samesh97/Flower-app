@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp>
   }
   Future navigateToDashBoard(BuildContext context) async
   {
-    Future.delayed(const Duration(seconds: 2),(){
+    Future.delayed(const Duration(seconds: 3),(){
 
       Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
 
