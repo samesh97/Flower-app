@@ -27,12 +27,39 @@ class _ViewMoreState extends State<ViewMore>
 
       body: Center(
         child: Container(
-
-          child: Column(
+        padding:EdgeInsets.all(30.0),
+        margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+        child: Column(
             children: [
-              Expanded(child: Center(child: Text('Selected Flower ID ${flower.id}'),)),
 
+              Expanded(child: Center(child: Text(
+                flower.name,
+                style: TextStyle(
+                    color: Theme.of(context).highlightColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20
+                ),
+              ),
+              )),
+
+              FadeInImage(image: NetworkImage(flower.preview), placeholder: AssetImage('assets/images/icon.png'),width: 200,),
+              Expanded(child: Center(child: Text(flower.scientific_name,style: TextStyle(
+                  color: Theme.of(context).highlightColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
+              ),),)),
+              Expanded(child: Center(child: Text('Usage - \n ${flower.usage}',style: TextStyle(
+                  color: Theme.of(context).highlightColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
+              ),),)),
+              Expanded(child: Center(child: Text('Selected Flower ID ${flower.short_desc}',style: TextStyle(
+                  color: Theme.of(context).highlightColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15
+              ),),)),
               GestureDetector(
+
                 child: Container(
                   width: 120,
                   height: 40,
