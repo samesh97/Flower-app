@@ -1,3 +1,4 @@
+import 'package:flora_sense/database/LocalData.dart';
 import 'package:flora_sense/models/Flower.dart';
 import 'package:flora_sense/pages/updateFlower.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +22,7 @@ class _ViewMoreState extends State<ViewMore>
 
   late Flower flower;
   List<String> imageList = [];
+  Widget updateFlowerButton = Text('');
 
   _ViewMoreState(@required this.flower);
 
@@ -39,10 +41,10 @@ class _ViewMoreState extends State<ViewMore>
   @override
   Widget build(BuildContext context)
   {
-    return Scaffold(
+    Widget w = Scaffold(
 
-      body: Center(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Center(
           child: Container(
 
           padding:EdgeInsets.all(30.0),
@@ -98,7 +100,7 @@ class _ViewMoreState extends State<ViewMore>
                                   fontSize: 30
                               )
                           ),
-                          SizedBox(height: 5,),
+                          SizedBox(height: 4,),
                           Text(
                               flower.scientific_name,
                               style: TextStyle(
@@ -117,7 +119,7 @@ class _ViewMoreState extends State<ViewMore>
                   )
 
                 ),
-                SizedBox(height: 15,),
+                SizedBox(height: 35,),
 
 
 
@@ -126,10 +128,10 @@ class _ViewMoreState extends State<ViewMore>
                   child: Text(
                       'Family -> ${flower.family}',
                       style: TextStyle(
-                          color: Theme.of(context).buttonColor,
+                          color: Theme.of(context).focusColor,
                           fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                      ),textAlign: TextAlign.end,
+                          fontSize: 15,
+                      ),textAlign: TextAlign.start,
                   ),
                 ),
                 SizedBox(height: 6,),
@@ -140,9 +142,9 @@ class _ViewMoreState extends State<ViewMore>
                       style: TextStyle(
                           color: Theme.of(context).focusColor,
                           fontWeight: FontWeight.bold,
-                          fontSize: 16
+                          fontSize: 15
                       )
-                    ,textAlign: TextAlign.end,
+                    ,textAlign: TextAlign.start,
                   ),
                 ),
 
@@ -203,22 +205,11 @@ class _ViewMoreState extends State<ViewMore>
                 ),)),
 
 
+                SizedBox(height: 35,),
 
-                // GestureDetector(
-                //
-                //   child: Container(
-                //     width: 120,
-                //     height: 40,
-                //     margin: EdgeInsets.only(right: 20),
-                //
-                //     decoration: BoxDecoration(
-                //         color: Theme.of(context).buttonColor,
-                //         borderRadius: BorderRadius.all(Radius.circular(7))
-                //     ),
-                //     child: Center(child: Text('Update Flower',style: TextStyle(color: Theme.of(context).accentColor,fontSize: 14,fontWeight: FontWeight.bold),)),
-                //   ),
-                //   onTap: () => {updateFlower()},
-                // ),
+                updateFlowerButton,
+
+
 
               ],
             )
@@ -227,7 +218,40 @@ class _ViewMoreState extends State<ViewMore>
       ),
 
     );
+
+    checkLogin();
+    return w;
   }
+  checkLogin()
+  {
+    LocalData.isLogin().then((value) => {
+
+      if(value) getUpdateFlowerButton()
+
+    });
+  }
+  getUpdateFlowerButton()
+  {
+    setState(() {
+
+      updateFlowerButton = GestureDetector(
+
+        child: Container(
+          width: 120,
+          height: 40,
+          margin: EdgeInsets.only(right: 20),
+
+          decoration: BoxDecoration(
+              color: Theme.of(context).buttonColor,
+              borderRadius: BorderRadius.all(Radius.circular(7))
+          ),
+          child: Center(child: Text('Update Flower',style: TextStyle(color: Theme.of(context).accentColor,fontSize: 14,fontWeight: FontWeight.bold),)),
+        ),
+        onTap: () => {updateFlower()},
+      );
+    });
+  }
+
   updateFlower()
   {
     Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateFlower(flower: flower,)));
